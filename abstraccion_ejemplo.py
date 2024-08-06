@@ -1,0 +1,34 @@
+from abc import ABCMeta, abstractmethod
+class Persona:
+    __metaclass__=ABCMeta
+    def __init__(self, edad, nombre):
+        self.edad = edad
+        self.nombre= nombre
+        print"se ha creado a", self.nombre, "de", self.edad
+    
+    @abstractmethod
+    def hablar (self, **palabras): pass
+ 
+class Deportista(Persona):
+    def __init__(self, edad, nombre, deporte):
+        self.edad = edad
+        self.nombre = nombre
+        self.__deporte = deporte
+        print"se ha creado a", self.nombre, "de", self.edad
+
+        print "Se ha creado a", self.nombre
+    
+    def practicarDeporte(self):
+        print self.nombre, ':', "voy a practicar"
+    
+    def verMiDeporte(self):
+        return self.__deporte
+
+    def hablar (self, **palabras): 
+        for frase in palabras:
+            print self.nombre, ': ', palabras[frase]
+
+luis=Deportista(18,"Luis","natacion")
+luis.hablar(t1="hola, estoy hablando", t2="Este soy yo")
+luis.practicarDeporte()
+print "Luis practica", luis.verMiDeporte()
